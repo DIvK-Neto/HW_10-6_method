@@ -1,10 +1,12 @@
-import { Character } from '../class/character.js';
+import { Bowerman } from '../class/bowerman.js';
+import { Zombie } from '../class/zombie.js';
+
 
 test('create a character with valid parameters', () => {
-  const character = new Character('Archer', 'Bowman');
+  const character = new Bowerman('Archer');
   const correct = {
-    attack: undefined,
-    defence: undefined,
+    attack: 25,
+    defence: 25,
     health: 100,
     level: 1,
     name: 'Archer',
@@ -14,17 +16,17 @@ test('create a character with valid parameters', () => {
 });
 
 test('error for invalid name', () => {
-  expect(() => new Character('A', 'Bowman')).toThrow('Имя должно быть строкой длиной от 2 до 10 символов.');
-  expect(() => new Character('VeryLongName', 'Bowman')).toThrow('Имя должно быть строкой длиной от 2 до 10 символов.');
+  expect(() => new Bowerman('A')).toThrow('Имя должно быть строкой длиной от 2 до 10 символов.');
+  expect(() => new Bowerman('VeryLongName')).toThrow('Имя должно быть строкой длиной от 2 до 10 символов.');
 });
 
 test('error for invalid type', () => {
-  expect(() => new Character('Archer', 'InvalidType')).toThrow('Тип должен быть одним из следующих: Bowman, Swordsman, Magician, Daemon, Undead, Zombie.');
+  expect(() => new Bowerman('Archer', 'InvalidType')).toThrow('Тип должен быть одним из следующих: Bowman, Swordsman, Magician, Daemon, Undead, Zombie.');
 });
 
 test('damage to unit', () => {
-  const archer = new Character('Archer', 'Bowman', 25, 25);
-  const zombie = new Character('Zombie', 'Zombie', 40, 10);
+  const archer = new Bowerman('Archer');
+  const zombie = new Zombie('Zombie');
   archer.damage(50);
   zombie.damage(100);
   expect(archer.health).toBe(62.5);
@@ -32,13 +34,13 @@ test('damage to unit', () => {
 });
 
 test('damage to unit with 0 hp', () => {
-  const zombie = new Character('Zombie', 'Zombie', 40, 10);
+  const zombie = new Zombie('Zombie');
   zombie.health = 0;
   expect(() => zombie.damage(1)).toThrow('юнит мертв');
 });
 
 test('levelUp unit', () => {
-  const archer = new Character('Archer', 'Bowman', 25, 25);
+  const archer = new Bowerman('Archer');
   archer.damage(50);
   expect(archer.health).toBe(62.5);
   archer.levelUp();
@@ -49,7 +51,7 @@ test('levelUp unit', () => {
 });
 
 test('levelUp dead unit', () => {
-  const zombie = new Character('Zombie', 'Zombie', 40, 10);
+  const zombie = new Zombie('Zombie');
   zombie.health = 0;
   expect(() => zombie.levelUp()).toThrow('нельзя повысить уровень мертвому юниту');
 });

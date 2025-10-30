@@ -1,13 +1,14 @@
-import { Daemon } from '../daemon.js'
+import { Daemon } from '../class/daemon';
 
-test('Daemon', () => {
-
-    const unit = new Daemon('Mannarot');
-
-    expect(unit.name).toBe('Mannarot');
-    expect(unit.type).toBe('Daemon');
-    expect(unit.attack).toBe(10);
-    expect(unit.defence).toBe(40);
-    expect(unit.level).toBe(1);
-    expect(unit.health).toBe(100);
-})
+test('Правильно создаётся объект', () => {
+    const daemon = new Daemon('Daemon');
+    const correct = {
+        attack: 10,
+        defence: 40,
+        health: 100,
+        level: 1,
+        name: 'Daemon',
+        type: 'Daemon'
+    };
+    expect(daemon).toEqual(correct);
+});

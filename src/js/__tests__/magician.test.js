@@ -1,13 +1,14 @@
-import { Magician } from '../magician.js'
+import { Magician } from '../class/magician';
 
-test('Magician', () => {
-
-    const unit = new Magician('Gendalf');
-
-    expect(unit.name).toBe('Gendalf');
-    expect(unit.type).toBe('Magician');
-    expect(unit.attack).toBe(10);
-    expect(unit.defence).toBe(40);
-    expect(unit.level).toBe(1);
-    expect(unit.health).toBe(100);
-})
+test('Правильно создаётся объект', () => {
+    const magician = new Magician('Magician');
+    const correct = {
+        attack: 100,
+        defence: 40,
+        health: 100,
+        level: 1,
+        name: 'Magician',
+        type: 'Magician'
+    };
+    expect(magician).toEqual(correct);
+});

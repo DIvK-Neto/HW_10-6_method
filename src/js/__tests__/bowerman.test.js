@@ -1,13 +1,14 @@
-import { Bowerman } from '../bowerman.js'
+import { Bowerman } from "../class/bowerman";
 
-test('Bowerman', () => {
-
-  const unit = new Bowerman('Legolas');
-
-  expect(unit.name).toBe('Legolas');
-  expect(unit.type).toBe('Bowman');
-  expect(unit.attack).toBe(25);
-  expect(unit.defence).toBe(25);
-  expect(unit.level).toBe(1);
-  expect(unit.health).toBe(100);
-})
+test("Правильно создаётся объект", () => {
+  const bowerman = new Bowerman("Bowman");
+  const correct = {
+    attack: 25,
+    defence: 25,
+    health: 100,
+    level: 1,
+    name: "Bowman",
+    type: "Bowman"
+  };
+  expect(bowerman).toEqual(correct);
+});

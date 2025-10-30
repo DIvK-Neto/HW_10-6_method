@@ -1,13 +1,14 @@
-import { Zombie } from '../zombie.js'
+import { Zombie } from '../class/zombie';
 
-test('Zombie', () => {
-
-    const unit = new Zombie('Stub');
-
-    expect(unit.name).toBe('Stub');
-    expect(unit.type).toBe('Zombie');
-    expect(unit.attack).toBe(40);
-    expect(unit.defence).toBe(10);
-    expect(unit.level).toBe(1);
-    expect(unit.health).toBe(100);
-})
+test('Правильно создаётся объект', () => {
+    const zombie = new Zombie('Zombie');
+    const correct = {
+        attack: 40,
+        defence: 10,
+        health: 100,
+        level: 1,
+        name: 'Zombie',
+        type: 'Zombie'
+    };
+    expect(zombie).toEqual(correct);
+});
